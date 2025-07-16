@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { MenuModule } from './menu/menu.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -22,7 +23,8 @@ import { MenuModule } from './menu/menu.module';
       }
     }),
     UserModule,
-    MenuModule
+    MenuModule,
+      JwtModule.register({ secret: process.env.JWT_SECRET })
   ],
   controllers: [AppController],
   providers: [AppService],
